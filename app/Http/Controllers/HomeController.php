@@ -30,7 +30,7 @@ class HomeController extends Controller
             $request->session()->regenerate();
             return redirect('/home');
         }
-        return back();
+        return back()->withErrors(['auth'=>'Invalid email or password.']);
     }
     public function registerView()
     {
@@ -38,8 +38,8 @@ class HomeController extends Controller
     }
     public function register(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
+        $request->validate([
+            'email' => ['required', 'email','unique:users'],
             'fullname' => ['required', 'alpha'],
             'password' => ['required'],
         ]);
