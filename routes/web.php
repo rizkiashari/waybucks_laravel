@@ -19,3 +19,4 @@ Route::get('/login', [HomeController::class,'loginView']);
 Route::post('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/register', [HomeController::class,'registerView']);
 Route::post('/register', [HomeController::class, 'register']);
+Route::get('/logout', [HomeController::class,'logout'])->middleware('auth');
