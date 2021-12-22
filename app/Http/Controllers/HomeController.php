@@ -13,12 +13,15 @@ class HomeController extends Controller
     {
         return view('home', [
             'title' => 'Home',
-            'active' => 'home',
+            'active' => Auth::user(),
         ]);
     }
     public function loginView()
     {
-        return view('login');
+        return view('login', [
+            'title' => 'Login',
+            'active' => Auth::user(),
+        ]);
     }
     public function login(Request $request)
     {
@@ -34,7 +37,10 @@ class HomeController extends Controller
     }
     public function registerView()
     {
-        return view('register');
+        return view('register', [
+            'title' => 'Register',
+            'active' => Auth::user(),
+        ]);
     }
     public function register(Request $request)
     {
