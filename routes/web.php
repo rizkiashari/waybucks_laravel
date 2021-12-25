@@ -20,3 +20,7 @@ Route::post('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/register', [HomeController::class,'registerView']);
 Route::post('/register', [HomeController::class, 'register']);
 Route::get('/logout', [HomeController::class,'logout'])->middleware('auth');
+
+
+Route::get('/admin', [HomeController::class,'adminView']);
+Route::get('/cart', [HomeController::class,'cartView']);
