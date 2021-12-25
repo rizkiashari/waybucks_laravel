@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [HomeController::class,'loginView']);
+Route::get('/login', [HomeController::class, 'loginView']);
 Route::post('/login', [HomeController::class, 'login'])->name('login');
-Route::get('/register', [HomeController::class,'registerView']);
+Route::get('/register', [HomeController::class, 'registerView']);
 Route::post('/register', [HomeController::class, 'register']);
-Route::get('/logout', [HomeController::class,'logout'])->middleware('auth');
+Route::get('/logout', [HomeController::class, 'logout'])->middleware('auth');
+
+Route::get('/detailproduct', [DetailProductController::class, 'detailProduct']);

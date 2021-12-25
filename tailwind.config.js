@@ -8,5 +8,6 @@ module.exports = {
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
+    mode: "jit",
     plugins: [],
 };

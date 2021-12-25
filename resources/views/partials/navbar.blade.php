@@ -11,6 +11,7 @@
         </svg>
       </button>
     </div>
+    
     <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden gap-4 md:flex md:justify-end md:flex-row">
         @if ($active!=null)
         <div @click.away="open = false" class="relative" x-data="{ open: false }">
