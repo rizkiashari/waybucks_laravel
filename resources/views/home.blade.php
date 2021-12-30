@@ -1,5 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <p>Home</p>
+    <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+
+    </div>
 @endsection

@@ -2,12 +2,9 @@
 
 @section('content')
 
-<div class="px-24">
-    <div >
-        <h2 class="text-[#BD0707] font-bold text-3xl">Income transaction</h2>
-    </div>
-
-    <div class="flex flex-col px-10 pt-10">
+<div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+    <div class="flex flex-col w-full px-10 pt-10">
+        <h2 class="text-[#BD0707] md:mb-8 mb-4 font-bold text-3xl">Income transaction</h2>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">

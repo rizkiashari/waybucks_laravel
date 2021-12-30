@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-<div class="container px-4 md:px-8 sm:px-6 mx-auto">
+<div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
   <div class="flex gap-10 flex-col md:flex-row md:gap-32">
     <img class="rounded-[10px] object-cover md:w-1/4 w-full h-[30rem]" src="https://images.unsplash.com/photo-1606166325695-ce4d64e3195f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
     <div class="w-full md:w-1/2">

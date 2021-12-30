@@ -2,13 +2,10 @@
 
 @section('content')
     
-<div class="px-24">
-    <div>
-        <h2 class="text-[#BD0707] font-bold text-3xl">My Cart</h2>
-    </div>
-
-    <div class="flex w-full mt-10">
-        <div class="w-3/5 mr-14">
+<div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+    <div class="flex gap-8 md:flex-row flex-col w-full">
+        <div class="md:w-3/5 w-full">
+            <h2 class="text-[#BD0707] md:mb-8 mb-4 font-bold md:text-3xl text-xl sm:text-lg">My Cart</h2>
             <div class="border-b-2 border-[#974A4A] pb-5">
                 <h2 class="text-[#BD0707] font-normal text-2xl" >Review Your Order</h2>
             </div>
@@ -106,8 +103,8 @@
                 </div>
             </div>
 
-            <div class="flex mt-10 justify-between">
-                <div class="flex flex-col w-1/2 text-[#BD0707]">
+            <div class="flex mt-10 md:flex-row flex-col justify-between">
+                <div class="flex flex-col md:w-1/2 w-full text-[#BD0707]">
                     <div class="border-b-2 border-t-2 border-[#974A4A] py-5">
                         <div class="flex flex-col ">
                             <div class="flex justify-between">
@@ -138,9 +135,8 @@
                             </div>
                         </div> 
                     </div>
-                </div>
-                
-                <div class="w-1/3 border-2 rounded-lg border-[#BD0707] bg-[#E0C8C840] flex flex-col items-center justify-center gap-y-2">
+                </div>              
+                <div class="md:w-1/3 border-2 md:py-0 py-12 rounded-lg border-[#BD0707] bg-[#E0C8C840] flex flex-col items-center justify-center gap-y-2">
                     <div>
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_46_449)">
@@ -152,15 +148,12 @@
                             </clipPath>
                             </defs>
                         </svg>                            
-                    </div>
-                    <div>
-                        <h2 class="text-[#68323280] font-normal text-2xl">Attache of Transaction</h2>
-                    </div>
+                    </div>                  
+                    <h2 class="text-[#68323280] text-center font-normal text-sm md:text-xl">Attache of Transaction</h2>            
                 </div>
             </div>
         </div>
-
-        <div class="w-2/5 px-10 pt-12">
+        <div class="md:w-2/5 w-full px-10 pt-12">
             <form>
                 <div class="form-group mb-6">
                   <input type="text" class="form-control block
