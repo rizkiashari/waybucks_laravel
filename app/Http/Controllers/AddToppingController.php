@@ -21,20 +21,19 @@ class AddToppingController extends Controller
         $addTopping = new topping();
 
         $request->validate([
-            'name_topping'=>'required',
-            'price_topping'=>'required|numeric|min:1000',
+            'name_topping' => 'required',
+            'price_topping' => 'required|numeric|min:1000',
         ]);
 
         $photo_name = $request->file('file')->getClientOriginalName();
-        $photo_topping = $request->file('file')->storeAs('/public/images/',$photo_name);
-        // $photo_topping = $request->file('file')->store('/public/images',$photo_name);
+        $request->file('file')->storeAs('/public/images/', $photo_name);
 
         $addTopping->name_topping = $request->name_topping;
         $addTopping->price_topping = $request->price_topping;
-        $addTopping->photo_topping = $photo_topping;
+        $addTopping->photo_topping = $photo_name;
 
         $addTopping->save();
 
-        return back();
+        return back()->with('success', 'Topping has been added');
     }
 }
