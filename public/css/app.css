@@ -564,6 +564,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-\[-2em\] {
   margin-top: -2em;
 }
+.mt-\[8px\] {
+  margin-top: 8px;
+}
 .block {
   display: block;
 }
@@ -626,6 +629,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .h-\[250px\] {
   height: 250px;
+}
+.h-1 {
+  height: 0.25rem;
+}
+.h-16 {
+  height: 4rem;
 }
 .w-6 {
   width: 1.5rem;
@@ -749,6 +758,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .transform {
   transform: var(--tw-transform);
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .appearance-none {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -871,6 +883,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-l {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
+}
+.rounded-t-\[8px\] {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .border-\[2px\] {
   border-width: 2px;
@@ -1239,6 +1255,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(17 26 170 / var(--tw-ring-opacity));
 }
+.ring-white {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+}
 .transition {
   transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -1360,6 +1380,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   content: var(--tw-content);
   background-color: #3a3a3a33;
 }
+.before\:bg-\[\#6b6b6b33\]::before {
+  content: var(--tw-content);
+  background-color: #6b6b6b33;
+}
+.before\:bg-\[\#3d3d3d33\]::before {
+  content: var(--tw-content);
+  background-color: #3d3d3d33;
+}
 .checked\:flex:checked {
   display: flex;
 }
@@ -1473,6 +1501,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   .sm\:text-\[26px\] {
     font-size: 26px;
   }
+
+  .sm\:text-\[28px\] {
+    font-size: 28px;
+  }
 }
 @media (min-width: 768px) {
 
@@ -1535,6 +1567,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:h-\[400px\] {
     height: 400px;
+  }
+
+  .md\:h-24 {
+    height: 6rem;
   }
 
   .md\:w-\[600px\] {
@@ -1625,6 +1661,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 22.5%;
   }
 
+  .md\:w-24 {
+    width: 6rem;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -1651,6 +1691,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:gap-9 {
     gap: 2.25rem;
+  }
+
+  .md\:gap-3 {
+    gap: 0.75rem;
+  }
+
+  .md\:gap-2 {
+    gap: 0.5rem;
+  }
+
+  .md\:gap-28 {
+    gap: 7rem;
+  }
+
+  .md\:gap-8 {
+    gap: 2rem;
   }
 
   .md\:px-8 {
@@ -1727,6 +1783,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:text-\[32px\] {
     font-size: 32px;
+  }
+
+  .md\:text-\[4px\] {
+    font-size: 4px;
+  }
+
+  .md\:text-\[44px\] {
+    font-size: 44px;
   }
 }
 @media (min-width: 1024px) {

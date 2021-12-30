@@ -24,7 +24,7 @@ Route::get('/register', [HomeController::class, 'registerView'])->middleware('gu
 Route::post('/register', [HomeController::class, 'register']);
 Route::get('/logout', [HomeController::class, 'logout'])->middleware('auth');
 
-Route::get('/detailproduct', [DetailProductController::class, 'detailProduct']);
+Route::get('/product/{product:slug_product}', [DetailProductController::class, 'detailProduct']);
 
 
 Route::get('/admin', [HomeController::class, 'adminView']);

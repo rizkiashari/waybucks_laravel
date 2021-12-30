@@ -37,8 +37,8 @@
                     @foreach ($products as $product)
                         <div class="md:w-[22.5%] rounded-[8px] w-[45%] relative bg-[#F6DADA]">
                             <a href="/product/{{ $product->slug_product }}">
-                                <div class="before:absolute before:top-0 before:bottom-0 before:right-0 before:left-0 before:bg-[#3a3a3a33] before:rounded-[8px]">
-                                    <img class="rounded-[8px] w-full object-cover" src="<?php echo asset("storage/images/$product->photo_product") ?>" />
+                                <div class="before:absolute before:top-0 before:bottom-0 before:right-0 before:left-0 before:bg-[#3d3d3d33] before:rounded-[8px]">
+                                    <img class="w-full object-cover" src="<?php echo asset("storage/images/$product->photo_product") ?>" />
                                 </div>
                                 <h3 class="text-[#bf0707] md:text-[18px] font-bold text-[12px] sm:text-[16px] px-4 py-2">{{ $product->name_product }}</h3>
                                 <p class="text-[#974A4A] px-4 pb-2 md:text-[14px] sm:text-[12px] text-[10px]">{{ $product->price_product }}</p>

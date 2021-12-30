@@ -16,9 +16,13 @@
         @if ($active!=null)
           <div @click.away="open = false" class="relative" x-data="{ open: false }">
             <button @click="open = !open">
-              <div class="inline-block h-10 w-10 md:ml-4 ml-4 md:my-0 my-4 rounded-full ring-2 ring-[#111aaa]">
-                <p class="mt-[6px]">P</p>
-              </div>
+              @if (Auth::user()->profile == null)
+                <div class="inline-block h-10 w-10 md:ml-4 ml-4 md:my-0 my-4 rounded-full ring-2 ring-[#111aaa]">
+                  <p class="mt-[8px] uppercase">{{ substr(Auth::user()->fullname , 0, 1) }}</p>
+                </div>
+              @else
+                <img class="inline-block h-10 w-10 md:ml-4 ml-4 md:my-0 my-4 rounded-full ring-2 ring-white" src="{{url('storage/images/'.Auth::user()->profile)}}" alt="profile user"> 
+              @endif
             </button>
             <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
               <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">

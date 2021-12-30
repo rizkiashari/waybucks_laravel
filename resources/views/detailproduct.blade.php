@@ -29,22 +29,28 @@
     </div>
   @endif
 <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-  <div class="flex gap-10 flex-col md:flex-row md:gap-32">
-    <img class="rounded-[10px] object-cover md:w-1/4 w-full h-[30rem]" src="https://images.unsplash.com/photo-1606166325695-ce4d64e3195f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
-    <div class="w-full md:w-1/2">
-      <h2 class="font-bold text-[#BD0707] capitalize sm:text-[32px] text-[20px] mb-4 md:text-[48px]">Ice Coffee Palm Sugar</h3>
-      <p class="font-normal text-[#974A4A] sm:text-[16px] md:mb-14 text-[14px] mb-4 md:text-[24px]">Rp 27.000</p>
+  <div class="flex w-full gap-10 flex-col md:flex-row md:gap-28">
+    <img class="rounded-[10px] object-cover md:w-1/2 w-full h-[30rem]" src="<?php echo asset("storage/images/$product->photo_product") ?>"/>
+    <div class="w-full">
+      <h2 class="font-bold text-[#BD0707] capitalize sm:text-[28px] text-[16px] mb-4 md:text-[44px]">{{ $product->name_product }}</h3>
+      <p class="font-normal text-[#974A4A] sm:text-[16px] md:mb-14 text-[14px] mb-4 md:text-[24px]"> Rp.{{ number_format($product->price_product,  0, ".", ".") }}</p>
       <h3 class="capitalize font-semibold sm:text-[16px] md:mb-10 text-[14px] mb-4 md:text-[24px] text-[#974A4A] ">Topping</h3>
       {{-- START:  All Topping --}}
-      <div class="flex gap-4 md:gap-6">
+      <div class="flex w-full gap-4 md:gap-8 flex-wrap">
         {{-- Topping --}}
-        <div class="flex items-center gap-y-3 flex-col">
-          <label for="topping" class="relative">
-            <img class="w-24 h-24 object-cover rounded-full" src="https://media.istockphoto.com/photos/little-gamer-in-headset-near-compute-picture-id1342094843?b=1&k=20&m=1342094843&s=170667a&w=0&h=3uN5LbqY_2sJgcdn89JfoiN98k2p4cXy5k9R_zEplFA="/>
-            <input type="checkbox" id="topping" class="absolute top-1 right-0 w-6 h-6 rounded-full appearance-none hidden checked:flex checked:bg-[#d35252]" />
-          </label>
-          <p class="text-[#BD0707] text-[12px] md:text-[14px]">Bubble Tea Gelatin</p>
-        </div>
+        @if (count($toppings) > 0)
+          @foreach ($toppings as $topping)
+            <div class="flex items-center gap-y-3 flex-col">
+              <label for="{{ $topping->id }}" class="relative cursor-pointer">
+                <img class="md:w-24 md:h-24 w-16 h-16 object-cover rounded-full" src="<?php echo asset("storage/images/$topping->photo_topping") ?>"/>
+                <input type="checkbox" value={{ $topping->id }}  name="toppings[]" id="{{ $topping->id }}" class="absolute top-1 right-0 w-6 h-6 rounded-full appearance-none hidden checked:flex checked:bg-[#d35252]" />
+              </label>
+              <label class="text-[#BD0707] text-[12px] md:text-[14px]">{{ $topping->name_topping }}</label>
+            </div>
+          @endforeach
+        @else
+          <p class="capitalize md:text-[32px] text-[14px] font-semibold">Topping not found</p>
+        @endif
       </div>
       {{-- END: ALL Topping --}}
       <div class="flex my-10 justify-between">
