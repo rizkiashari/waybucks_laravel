@@ -12,6 +12,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $products = Prod
+
+
         return view('home', [
             'title' => 'Home',
             'active' => Auth::user(),
