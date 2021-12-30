@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class topping extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name_topping', 'price_topping', 'photo_topping'
+    ];
+
+    public function transaction_topping()
+    {
+        return $this->hasOne(TransactionTopping::class);
+    }
 }

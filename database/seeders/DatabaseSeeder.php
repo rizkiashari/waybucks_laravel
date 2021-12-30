@@ -17,11 +17,24 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         DB::table('roles')->insert([
-            ['name_role'=>'admin'],
-            ['name_role'=>'customer'],
+            [
+                'name_role' => 'admin',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name_role' => 'customer',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
         DB::table('users')->insert([
-            ['fullname'=>'admin','email'=>'admin@waybucks.local','password'=>Hash::make('admin'),'profile'=>'','role_id'=>1],
+            [
+                'fullname' => 'admin',
+                'email' => 'admin@waybucks.local',
+                'password' => Hash::make('admin'), 'role_id' => 1, 'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
