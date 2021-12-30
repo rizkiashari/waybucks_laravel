@@ -17,6 +17,7 @@ class HomeController extends Controller
             'active' => Auth::user(),
         ]);
     }
+
     public function loginView()
     {
         return view('login', [
@@ -24,21 +25,23 @@ class HomeController extends Controller
             'active' => Auth::user(),
         ]);
     }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if(User::find(Auth::id())->role->name_role=='admin'){
+            if (User::find(Auth::id())->role->name_role == 'admin') {
                 return redirect('/admin');
             }
             return redirect('/');
         }
-        return back()->withErrors(['auth'=>'Invalid email or password.']);
+        return back()->withErrors(['auth' => 'Invalid email or password.']);
     }
+
     public function registerView()
     {
         return view('register', [
@@ -46,10 +49,11 @@ class HomeController extends Controller
             'active' => Auth::user(),
         ]);
     }
+
     public function register(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email','unique:users'],
+            'email' => ['required', 'email', 'unique:users'],
             'fullname' => ['required', 'alpha'],
             'password' => ['required'],
         ]);
@@ -57,20 +61,18 @@ class HomeController extends Controller
         $user->email = $request->email;
         $user->fullname = $request->fullname;
         $user->password = Hash::make($request->password);
-        $user->profile = 'default';
-        $user->role_id = Role::where('name_role','customer')->value('id');
+        $user->role_id = Role::where('name_role', 'customer')->value('id');
         $user->save();
         return redirect('/login');
     }
-    public function logout(Request $request,User $user)
+    
+    public function logout(Request $request, User $user)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     }
-
-
 
     public function adminView()
     {

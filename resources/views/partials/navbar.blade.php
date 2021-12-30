@@ -14,25 +14,49 @@
     
     <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden gap-4 md:flex md:justify-end md:flex-row">
         @if ($active!=null)
-        <div @click.away="open = false" class="relative" x-data="{ open: false }">
-          <button @click="open = !open">
-            <div class="inline-block h-10 w-10 md:ml-4 ml-4 md:my-0 my-4 rounded-full ring-2 ring-[#111aaa]">
-              <p class="mt-[6px]">P</p>
-            </div>
-          </button>
-          <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
-            <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
-              <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Profile</a>
-              <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{url('logout')}}">Logout</a>
+          <div @click.away="open = false" class="relative" x-data="{ open: false }">
+            <button @click="open = !open">
+              <div class="inline-block h-10 w-10 md:ml-4 ml-4 md:my-0 my-4 rounded-full ring-2 ring-[#111aaa]">
+                <p class="mt-[6px]">P</p>
+              </div>
+            </button>
+            <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+              <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                @if (Auth::user()->role_id == 1)
+                  <div class="flex gap-x-4 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                    <img class="w-6 h-8" src="/icons/icon_add_product.png"/>
+                    <a class="text-[16px]" href="/addproduct">
+                      Add Product
+                    </a>
+                  </div>
+                  <div class="flex gap-x-4 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                    <img class="w-7 h-8" src="/icons/icon_add_topping.png" />
+                    <a class="text-[16px]" href="/addtopping">
+                      Add Topping
+                    </a> 
+                  </div>
+                @else
+                  <div class="flex gap-x-4 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                    <img class="w-7 h-8" src="/icons/icon_profile.png" />
+                    <a class="text-[16px]" href="/user/profile">
+                      Profile
+                    </a> 
+                  </div>
+                @endif
+                <div class="border-t-[1px] w-full my-2 border-t-[#c0c0c0]"></div>
+                <div class="flex gap-x-2 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                  <img class="w-7 h-8" src="/icons/icon_logout.png" />
+                  <a class="text-[16px]" href="{{url('logout')}}">
+                    Logout
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
         @else
-        <a class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] w-[110px] font-bold px-8 rounded-md text-sm" href="{{url('login')}}">Login</a>
-        <a class="px-6 md:px-[26px] py-[5px] text-sm bg-[#BD0707] w-[110px] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" href="{{url('register')}}">Register</a>
+          <a class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] w-[110px] font-bold px-8 rounded-md text-sm" href="{{url('login')}}">Login</a>
+          <a class="px-6 md:px-[26px] py-[5px] text-sm bg-[#BD0707] w-[110px] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" href="{{url('register')}}">Register</a>
         @endif
-      {{-- Jika Sudah Ada Login Logic munculkan saja ya --}}
-      {{-- end --}}
     </nav>
   </div>
 </div>

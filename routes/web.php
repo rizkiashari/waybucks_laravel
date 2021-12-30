@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [HomeController::class, 'loginView']);
+Route::get('/login', [HomeController::class, 'loginView'])->middleware('guest');
 Route::post('/login', [HomeController::class, 'login'])->name('login');
-Route::get('/register', [HomeController::class, 'registerView']);
+Route::get('/register', [HomeController::class, 'registerView'])->middleware('guest');
 Route::post('/register', [HomeController::class, 'register']);
 Route::get('/logout', [HomeController::class, 'logout'])->middleware('auth');
 
@@ -28,6 +28,7 @@ Route::get('/detailproduct', [DetailProductController::class, 'detailProduct']);
 
 
 Route::get('/admin', [HomeController::class, 'adminView']);
+
 Route::get('/cart', [HomeController::class, 'cartView']);
 
 Route::get('/addtopping', [AddToppingController::class, 'index']);
