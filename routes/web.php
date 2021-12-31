@@ -25,12 +25,12 @@ Route::post('/register', [HomeController::class, 'register']);
 Route::get('/logout', [HomeController::class, 'logout'])->middleware('auth');
 
 Route::get('/product/{product:slug_product}', [DetailProductController::class, 'detailProduct']);
-
-
-Route::get('/admin', [HomeController::class, 'adminView']);
+Route::post('/product/{product:slug_product}/add-to-cart', [DetailProductController::class, 'addToCart']);
 
 Route::get('/cart', [HomeController::class, 'cartView']);
 
+
+Route::get('/admin', [HomeController::class, 'adminView']);
 Route::get('/addtopping', [AddToppingController::class, 'index']);
 Route::post('/addtopping', [AddToppingController::class, 'insert']);
 Route::get('/addproduct', [AddProductController::class, 'index']);
