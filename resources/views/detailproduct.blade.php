@@ -43,7 +43,7 @@
             <div class="flex items-center gap-y-3 flex-col">
               <label for="{{ $topping->id }}" class="relative cursor-pointer">
                 <img class="md:w-24 md:h-24 w-16 h-16 object-cover rounded-full" src="<?php echo asset("storage/images/$topping->photo_topping") ?>"/>
-                <input type="checkbox" value={{ $topping->id }}  name="toppings[]" id="{{ $topping->id }}" class="absolute top-1 right-0 w-6 h-6 rounded-full appearance-none hidden checked:flex checked:bg-[#d35252]" />
+                <input type="checkbox" value={{ $topping->price_topping }}  name="toppings[]" id="{{ $topping->id }}" class="absolute top-1 right-0 w-6 h-6 rounded-full appearance-none hidden checked:flex checked:bg-[#d35252] toppings" />
               </label>
               <label class="text-[#BD0707] text-[12px] md:text-[14px]">{{ $topping->name_topping }}</label>
             </div>
@@ -55,7 +55,7 @@
       {{-- END: ALL Topping --}}
       <div class="flex my-10 justify-between">
         <h3 class="text-[#974A4A] font-semibold md:text-[24px] sm:text-[20px] text-[14px]">Total</h3>
-        <h3 class="text-[#974A4A] font-semibold md:text-[24px] sm:text-[20px] text-[14px]">Rp.12.000</h3>
+        <h3 class="text-[#974A4A] font-semibold md:text-[24px] sm:text-[20px] text-[14px] total">Rp.{{ number_format($product->price_product,  0, ".", ".") }}</h3>
       </div>
       <button class="w-full mb-8 capitalize text-center font-medium text-[#fff] py-1 md:text-[18px] bg-[#BD0707] rounded-[5px] sm:text-[16px] text-[12px]">
         add cart
@@ -63,4 +63,44 @@
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+  const formatRupiah = (money) => {
+    let reverse = money.toString().split('').reverse().join(''),
+    ribuan  = reverse.match(/\d{1,3}/g);
+    ribuan  = ribuan.join('.').split('').reverse().join('');
+    return ribuan;
+  }
+
+  $('.toppings').change(function(){
+    let total = 0;
+
+    // condition if topping is checked
+    if($(this).is(':checked')){
+      // get value of topping
+      let topping = $(this).val();
+      // get total
+      total = parseInt($('.total').text().replace(/[^\d]/g, ''));
+      // add topping to total
+      total += parseInt(topping);
+      // set total
+      const format = formatRupiah(total);
+      $('.total').text('Rp.' + format);
+    }else{
+      // get value of topping
+      let topping = $(this).val();
+      // get total
+      total = parseInt($('.total').text().replace(/[^\d]/g, ''));
+      // remove topping from total
+      total -= parseInt(topping);
+      // set total
+      const format = formatRupiah(total);
+      $('.total').text('Rp.' + format);
+    } 
+  });
+
+</script>
 @endsection
