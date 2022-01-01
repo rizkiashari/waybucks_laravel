@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddProductController;
 use App\Http\Controllers\AddToppingController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Route::get('/logout', [HomeController::class, 'logout'])->middleware('auth');
 Route::get('/product/{product:slug_product}', [DetailProductController::class, 'detailProduct']);
 Route::post('/product/{product:slug_product}/add-to-cart', [DetailProductController::class, 'addToCart']);
 
-Route::get('/cart', [HomeController::class, 'cartView']);
+Route::get('/cart', [CartController::class, 'index']);
 
 
 Route::get('/admin', [HomeController::class, 'adminView']);

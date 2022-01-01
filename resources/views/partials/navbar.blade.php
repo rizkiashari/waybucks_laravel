@@ -15,9 +15,9 @@
       <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden gap-4 md:flex md:justify-end md:flex-row">
           @if ($active!=null)
             @if (Auth::user()->role_id == 2)           
-              <a href="/cart" class="block px-4 py-1">
+              <a href="/cart" class="block px-4 py-1 relative">
                 <img src="/icons/icon_cart.svg" />
-                                  
+                                       
               </a>
             @endif
             <div @click.away="open = false" class="relative" x-data="{ open: false }">

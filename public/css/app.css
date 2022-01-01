@@ -497,6 +497,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-\[8px\] {
   margin-top: 8px;
 }
+.mt-6 {
+  margin-top: 1.5rem;
+}
 .block {
   display: block;
 }
@@ -533,6 +536,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-8 {
   height: 2rem;
 }
+.h-\[70\%\] {
+  height: 70%;
+}
 .w-6 {
   width: 1.5rem;
 }
@@ -565,6 +571,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-\[110px\] {
   width: 110px;
+}
+.w-\[50\] {
+  width: 50;
+}
+.w-\[50\%\] {
+  width: 50%;
+}
+.w-\[70\%\] {
+  width: 70%;
 }
 .min-w-full {
   min-width: 100%;
@@ -1142,6 +1157,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-right: -1.5rem;
   }
 
+  .sm\:mb-8 {
+    margin-bottom: 2rem;
+  }
+
+  .sm\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .sm\:w-\[350px\] {
     width: 350px;
   }
@@ -1223,6 +1246,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-left: 1rem;
   }
 
+  .md\:mb-12 {
+    margin-bottom: 3rem;
+  }
+
+  .md\:mt-8 {
+    margin-top: 2rem;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -1237,6 +1268,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:h-24 {
     height: 6rem;
+  }
+
+  .md\:h-\[50\%\] {
+    height: 50%;
   }
 
   .md\:w-\[600px\] {
@@ -1281,6 +1316,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-48 {
     width: 12rem;
+  }
+
+  .md\:w-\[50\%\] {
+    width: 50%;
   }
 
   .md\:flex-row {
@@ -1376,6 +1415,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:text-\[18px\] {
     font-size: 18px;
+  }
+
+  .md\:text-\[20px\] {
+    font-size: 20px;
+  }
+
+  .md\:text-\[1px\] {
+    font-size: 1px;
   }
 }
 @media (min-width: 1024px) {

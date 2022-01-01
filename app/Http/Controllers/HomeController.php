@@ -85,12 +85,4 @@ class HomeController extends Controller
             'active' => Auth::user(),
         ]);
     }
-
-    public function cartView()
-    {
-        return view('cart', [
-            'title' => 'Cart',
-            'active' => Auth::user(),
-        ]);
-    }
 }
