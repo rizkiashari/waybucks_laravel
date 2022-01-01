@@ -26,25 +26,52 @@ class DetailProductController extends Controller
     {
         $product = Product::where('slug_product', $slug_product)->first();
 
-        $toppings = $request->topping;
-
-        $dataTopping = [];
-        foreach ($toppings as $key => $value) {
-            $dataTopping[] = [
-                'id_topping' => $key,
-                'price_topping' => $value,
-            ];
-        }
 
         // add to cart cookies
         $cart = Cookie::get('cart');
-        if (Auth::check()) {
-            return redirect()->back();
-        }else{
-            return redirect('/login');
+        if ($request->topping) {
+            $topping = $request->topping;
+            $dataTopping = [];
+            foreach ($topping as $key => $value) {
+                $dataTopping[] = [
+                    'id_topping' => $key,
+                    'price_topping' => $value,
+                ];
+            }
+            if (Auth::check()) {
+                if (!$cart) {
+                    $cart = json_decode($cart, 60);
+                    $cart[] = [
+                        'id_product' => $product->id,
+                        'name_product' => $product->name_product,
+                        'price_product' => $product->price_product,
+                        'toppings' => $dataTopping,
+                        'qty_transaction' => 1,
+                    ];
+
+                    Cookie::queue('cart', json_encode($cart), 60);
+                    // dd($cart);
+                    return back()->with('success', 'Product added to cart');
+                } else {
+
+                    $cart = json_decode($cart, 60);
+                    $cart[] = [
+                        'id_product' => $product->id,
+                        'name_product' => $product->name_product,
+                        'price_product' => $product->price_product,
+                        'toppings' => $dataTopping,
+                        'qty_transaction' => 1,
+                    ];
+
+                    Cookie::queue('cart', json_encode($cart), 60);
+                    // dd($cart);
+                    return back()->with('success', 'Product added to cart');
+                }
+            } else {
+                return redirect('/login')->with('error', 'Please login or register to add product to cart');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Please select topping');
         }
-
-
-
     }
 }

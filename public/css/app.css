@@ -560,6 +560,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-7 {
   width: 1.75rem;
 }
+.w-8 {
+  width: 2rem;
+}
 .w-\[110px\] {
   width: 110px;
 }
@@ -900,6 +903,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-\[20px\] {
   font-size: 20px;
 }
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -1015,6 +1022,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
 }
+.ring-\[\#BD0707\] {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(189 7 7 / var(--tw-ring-opacity));
+}
 .transition {
   transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -1106,6 +1117,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-\[\#910707\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(145 7 7 / var(--tw-bg-opacity));
+}
+.hover\:bg-gray-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 .hover\:shadow-lg:hover {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
