@@ -17,14 +17,16 @@ class CartController extends Controller
             $subTotal = 0;
             $qty = 0;
             $total = 0;
+            $toppings = [];
             foreach ($cart as $key => $value) {
                 $subTotal += $value['price_product'];
                 $qty += $value['qty_transaction'];
+                $toppings = $value['toppings'];
 
-                foreach ($value['toppings'] as $key2 => $value2) {
-                    $total += $value2['price_topping'];
-                }
+                $total += $toppings['price_topping'];
             }
+
+            // dd($toppings);
             // dd($total);
             // dd($qty);
             // dd($subTotal);
