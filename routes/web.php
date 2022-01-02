@@ -29,6 +29,7 @@ Route::get('/product/{product:slug_product}', [DetailProductController::class, '
 Route::post('/product/{product:slug_product}/add-to-cart', [DetailProductController::class, 'addToCart']);
 
 Route::get('/cart', [CartController::class, 'index']);
+Route::get('/cart/{cart:id_cart}', [CartController::class, 'deleteCart']);
 
 
 Route::get('/admin', [HomeController::class, 'adminView']);
