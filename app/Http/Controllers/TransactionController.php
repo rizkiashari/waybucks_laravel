@@ -62,31 +62,37 @@ class TransactionController extends Controller
 
             $transaction->address_transaction = $request->address_transaction;
             $transaction->status_transaction = 'Waiting Approve';
-
+            $qty = 0;
             $total = 0;
             $totalTop = 0;
 
             $transaction->save();
             $transactionDetail = new TransactionDetail();
             foreach ($cart as $key => $value) {
+                $qty += $value['qty_transaction'];
+
 
                 $transactionDetail->transaction_id = $transaction->id;
                 $transactionDetail->product_id = $value['id_product'];
-                $transactionDetail->qty_transaction_detail = $value['qty_transaction'];
+                $transactionDetail->qty_transaction_detail = $qty;
 
                 foreach ($value['toppings'] as $value2) {
-                    $transactionTopping = new TransactionTopping();
                     $totalTop += $value2['price_topping'];
-                    $transactionTopping->transaction_detail_id = $transactionDetail->id;
-                    $transactionTopping->topping_id = $value2['id_topping'];
                 }
                 $total += $value['price_product'];;
-                $total += $totalTop;
-                $transactionDetail->subTotal = $total;
-                $transactionDetail->save();
             }
+            $total += $totalTop;
+            $transactionDetail->subTotal = $total;
+            $transactionDetail->save();
 
-            $transactionTopping->save();
+            foreach ($cart as $key => $value2) {
+                foreach ($value2['toppings'] as $value3) {
+                    $transactionTopping = new TransactionTopping();
+                    $transactionTopping->transaction_detail_id = $transactionDetail->id;
+                    $transactionTopping->topping_id = $value3['id_topping'];
+                    $transactionTopping->save();
+                }
+            }
 
             Cookie::queue(Cookie::forget('cart'));
 
