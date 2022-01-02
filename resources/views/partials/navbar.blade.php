@@ -15,7 +15,12 @@
         @if ($active!=null)
           @if (Auth::user()->role_id == 2)           
             <a href="/cart" class="block px-4 py-1 relative">
-              <img src="/icons/icon_cart.svg" />                                     
+              <img src="/icons/icon_cart.svg" />
+              <?php
+                $cart = Cookie::get('cart');
+                $cart = json_decode($cart, true);
+              ?>
+              <p class="absolute top-0 right-2 text-[#f1f1f1] text-[12px] px-2 py-[3px] rounded-full bg-[#bd0707]">{{ $cart ? count($cart) : 0 }}</p>
             </a>
           @endif
           <div @click.away="open = false" class="relative" x-data="{ open: false }">

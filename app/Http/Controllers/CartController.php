@@ -33,10 +33,7 @@ class CartController extends Controller
                 // $temp = $orderTop + $value['price_product'];
                 $total += $value['price_product'];
             }
-            // dd($total);
             $total += $totalTop;
-
-            // total order topping + price product 
 
 
             return view('cart', [

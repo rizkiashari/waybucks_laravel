@@ -18,6 +18,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->foreignId('product_id');
             $table->foreignId('transaction_id');
             $table->integer('qty_transaction_detail');
+            $table->integer('subTotal');
             $table->timestamps();
         });
     }

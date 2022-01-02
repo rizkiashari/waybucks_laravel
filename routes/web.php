@@ -5,6 +5,8 @@ use App\Http\Controllers\AddToppingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,7 @@ Route::post('/product/{product:slug_product}/add-to-cart', [DetailProductControl
 Route::get('/cart', [CartController::class, 'index']);
 Route::get('/cart/{cart:id_cart}', [CartController::class, 'deleteCart']);
 
+Route::post('/transaction', [TransactionController::class, 'storeTransaction']);
 
 Route::get('/admin', [HomeController::class, 'adminView']);
 Route::get('/addtopping', [AddToppingController::class, 'index']);

@@ -20,7 +20,6 @@ class CreateTransactionsTable extends Migration
             $table->string('name_transaction', 100);
             $table->string('email_transaction', 100);
             $table->string('phone_transaction', 15);
-            $table->integer('qty_transaction');
             $table->integer('postal_code_transaction');
             $table->text('address_transaction');
             $table->string('attach_transaction');
