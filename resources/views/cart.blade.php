@@ -66,20 +66,17 @@
                                                 <div>
                                                     <p class="text-[#974A4A] font-semibold">
                                                         Topping :
-                                                    </p>
-                                                    
+                                                    </p>      
                                                 </div>
                                                 <div>
                                                     <p class="text-[#BD0707]">
                                                         @foreach ($cart['topping'] as $item)
                                                             {{ $item }}
                                                         @endforeach
-                                                
                                                     </p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
+                                        </div>  
                                     </div>
                                     <div class="flex flex-col justify-center gap-y-4 items-end">
                                         <div>
@@ -204,7 +201,7 @@
                 </div>
             </div>
         @else
-            <div class="flex item-center mx-auto mt-6 justify-center md:w-[50%] md:h-[50%] w-[70%] h-[70%] md:mb-12 sm:mb-8 mb-4">
+            <div class="flex item-center mx-auto mt-4 justify-center md:w-[50%] md:h-[50%] w-[70%] h-[70%] md:mb-12 sm:mb-8 mb-4">
                 <div class="flex flex-col">
                     <img src="/icons/icon_cart_empty.svg" class="object-cover"/>
                     <p class="text-[#BD0707] text-[14px] sm:text-[16px] md:text-[24px] md:mt-8 sm:mt-6 mt-4 font-semibold text-center">Sorry cart not found</p>

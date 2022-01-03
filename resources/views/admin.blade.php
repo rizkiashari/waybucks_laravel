@@ -30,6 +30,7 @@
   @endif
  <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
     <div class="flex flex-col w-full px-10 pt-10">
+      @if (count($transactions) > 0)
         <h2 class="text-[#BD0707] md:mb-8 mb-4 font-bold text-3xl">Income transaction</h2>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -74,7 +75,7 @@
                           {{ $transaction->postal_code_transaction }}
                       </td>
                       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-                          69.000
+                        {{ $transaction->total_transaction }}
                       </td>
                       @if ($transaction->status_transaction == "Waiting Approve")
                         <td class="text-sm text-[#BD0707] font-light px-6 py-4 whitespace-nowrap border-r-2">
@@ -125,12 +126,22 @@
                       @endif
                       </td>
                     </tr>
+                                         
                   @endforeach
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
+        </div>  
+      @else
+        <div class="flex item-center mx-auto mt-0 justify-center md:w-[40%] md:h-[40%] w-[60%] h-[60%] md:mb-12 sm:mb-8 mb-4">
+          <div class="flex flex-col">
+              <img src="/icons/icon_cart_empty.svg" class="object-cover"/>
+              <p class="text-[#BD0707] text-[14px] sm:text-[16px] md:text-[24px] md:mt-8 sm:mt-6 mt-4 font-semibold text-center">Sorry No Transaction</p>
+          </div>
+        </div>  
+      @endif
+       
       </div>
       {{ $transactions->links() }}
  </div>

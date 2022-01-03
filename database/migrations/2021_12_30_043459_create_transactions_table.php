@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('postal_code_transaction');
             $table->text('address_transaction');
             $table->string('attach_transaction');
+            $table->integer('total_transaction');
             $table->string('status_transaction', 100);
             $table->timestamps();
         });

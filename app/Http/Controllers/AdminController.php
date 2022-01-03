@@ -11,19 +11,15 @@ class AdminController extends Controller
 {
     public function adminView()
     {
-        $transactions = Transaction::paginate(8);
+        $transactions = Transaction::paginate(6);
 
-        $detailTrx = [];
 
-        foreach ($transactions as $transaction) {
-            $detailTrx[] = TransactionDetail::where('transaction_id', $transaction->id)->get();
-        }
 
+        // dd($total);
         return view('admin', [
             'title' => 'Admin',
             'active' => Auth::user(),
-            'transactions' => $transactions,
-            'detailTrx' => $detailTrx
+            'transactions' => $transactions
         ]);
     }
 

@@ -23,6 +23,14 @@ class TransactionController extends Controller
             $cart = json_decode($cart, true);
 
             // dd($cart);
+            $qty = 0;
+            $total = 0;
+            $subTotal = 0;
+            foreach ($cart as $key => $value) {
+                $qty += $value['qty_transaction'];
+                $total += $value['price_product'];
+            }
+            $subTotal += $total;
 
             $request->validate([
                 'name_transaction' => 'required',
@@ -47,6 +55,7 @@ class TransactionController extends Controller
                 'address_transaction.min' => 'Alamat harus terdiri dari 5 karakter',
             ]);
 
+
             $transaction = new Transaction();
 
             $transaction->uuid_transaction = Str::uuid()->toString();
@@ -62,6 +71,7 @@ class TransactionController extends Controller
 
             $transaction->address_transaction = $request->address_transaction;
             $transaction->status_transaction = 'Waiting Approve';
+            $transaction->total_transaction = $subTotal;
 
             $transaction->save();
             $transactionDetail = new TransactionDetail();
