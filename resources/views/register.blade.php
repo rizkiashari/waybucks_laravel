@@ -13,8 +13,8 @@
                 @foreach ($errors->all() as $error)
                 <li class="text-[10px] sm:text-[12px] md:text-[16px]">{{ $error }}</li>
                 @endforeach
-            </ul> 
-            </div> 
+            </ul>
+            </div>
         </div>
         </div>
     @endif
@@ -24,32 +24,18 @@
                 <span class="absolute left-0 top-0 px-4 py-3">
                 <svg @click="open = !open" class="fill-current h-6 w-6 text-[#539b7b]" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
                 </span>
-                <strong class="font-bold text-[10px] sm:text-[12px] md:text-[16px] md:w-[400px] w-[300px]">{{ session('success') }}</strong>     
+                <strong class="font-bold text-[10px] sm:text-[12px] md:text-[16px] md:w-[400px] w-[300px]">{{ session('success') }}</strong>
             </div>
         </div>
     @endif
     <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+        <p class="capitalize md:text-[32px] text-[14px] font-semibold text-[#BD0707]">Register</p>
         <form class="mb-4" action="/register" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mb-6">
-                <input class="form-control" type="email" name="email" placeholder="Email">
-                @error('email')
-                <label class="block">{{ $message }}</label>
-                @enderror
-            </div>
-            <div class="mb-6">
-                <input class="form-control" type="password" name="password" placeholder="Password">
-                @error('password')
-                <label class="block">{{ $message }}</label>
-                @enderror
-            </div>
-            <div class="mb-6">
-                <input class="form-control" type="text" name="fullname" placeholder="Full Name">
-                @error('fullname')
-                <label class="block">{{ $message }}</label>
-                @enderror
-            </div>
-            <input class="btn btn-primary mt-3" type="submit" value="Register">
+            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="email" name="email" placeholder="Email">
+            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="password" name="password" placeholder="Password">
+            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="text" name="fullname" placeholder="Full Name">
+            <input class="px-6 md:px-[26px] py-[5px] text-sm bg-[#BD0707] w-[110px] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Register">
         </form>
         <a href="/login">Already have an account?</a>
     </div>
