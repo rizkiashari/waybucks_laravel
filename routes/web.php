@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddProductController;
 use App\Http\Controllers\AddToppingController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\HomeController;
@@ -34,8 +35,11 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::get('/cart/{cart:id_cart}', [CartController::class, 'deleteCart']);
 
 Route::post('/transaction', [TransactionController::class, 'storeTransaction']);
+Route::post('/transaction/{transaction:uuid_transaction}/cancel', [AdminController::class, 'cancelStatus']);
+Route::post('/transaction/{transaction:uuid_transaction}/onTheWay', [AdminController::class, 'onTheWayStatus']);
 
-Route::get('/admin', [HomeController::class, 'adminView']);
+
+Route::get('/admin', [AdminController::class, 'adminView']);
 Route::get('/addtopping', [AddToppingController::class, 'index']);
 Route::post('/addtopping', [AddToppingController::class, 'insert']);
 Route::get('/addproduct', [AddProductController::class, 'index']);

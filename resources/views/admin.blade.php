@@ -61,39 +61,78 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="border-b">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">1</td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-                        Mark
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-                        Cileungsi
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-                        16820
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-                        69.000
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-                        Waiting Approve
-                    </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        <div class="flex gap-4 justify-center">
-                            <button class="bg-[#BD0707] text-white font-semibold rounded-md w-24 py-1">
+                  @foreach ($transactions as $key => $transaction)
+                    <tr class="border-b">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">{{ $key+=1 }}</td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          {{ $transaction->name_transaction }}
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          {{ $transaction->address_transaction }}
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          {{ $transaction->postal_code_transaction }}
+                      </td>
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          69.000
+                      </td>
+                      @if ($transaction->status_transaction == "Waiting Approve")
+                        <td class="text-sm text-[#BD0707] font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          {{ $transaction->status_transaction }}
+                        </td>
+                      @endif
+                      @if ($transaction->status_transaction == "Success")
+                        <td class="text-sm text-[#78A85A] font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          {{ $transaction->status_transaction }}
+                        </td>
+                      @endif
+                      @if ($transaction->status_transaction == "Cancel")
+                        <td class="text-sm text-[#E83939] font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          {{ $transaction->status_transaction }}
+                        </td>
+                      @endif
+                      @if ($transaction->status_transaction == "On The Way")
+                        <td class="text-sm text-[#00D1FF] font-light px-6 py-4 whitespace-nowrap border-r-2">
+                          {{ $transaction->status_transaction }}
+                        </td>
+                      @endif
+                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        @if ($transaction->status_transaction == "Waiting Approve")
+                          <div class="flex gap-4 justify-center">
+                            <form action="/transaction/{{ $transaction->uuid_transaction }}/cancel" method="POST">
+                              @csrf
+                              <button class="bg-[#BD0707] text-white font-semibold rounded-md w-24 py-1">
                                 Cancel
-                            </button>
-                            <button class="bg-[#0ACF83] text-white font-semibold rounded-md w-24 py-1">
+                              </button>
+                            </form>
+                            <form action="/transaction/{{ $transaction->uuid_transaction }}/onTheWay" method="POST">
+                              @csrf
+                              <button class="bg-[#0ACF83] text-white font-semibold rounded-md w-24 py-1">
                                 Approve
-                            </button>
+                              </button>
+                            </form>
+                          </div>
+                        @endif
+                        @if ($transaction->status_transaction == "Success" || $transaction->status_transaction == "On The Way")
+                          <div class="flex justify-center items-center">
+                            <img src="/icons/icon_success.png" class="w-[24px]" />
+                          </div>
+                        @endif
+                        @if ($transaction->status_transaction == "Cancel")
+                        <div class="flex justify-center items-center">
+                          <img src="/icons/icon_cancel.png" class="w-[24px]" />
                         </div>
-                    </td>
+                      @endif
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+      {{ $transactions->links() }}
  </div>
 
 

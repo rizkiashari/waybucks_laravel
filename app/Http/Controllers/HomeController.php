@@ -77,12 +77,4 @@ class HomeController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
-
-    public function adminView()
-    {
-        return view('admin', [
-            'title' => 'Admin',
-            'active' => Auth::user(),
-        ]);
-    }
 }
