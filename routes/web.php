@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,8 @@ Route::get('/cart/{cart:id_cart}', [CartController::class, 'deleteCart']);
 Route::post('/transaction', [TransactionController::class, 'storeTransaction']);
 Route::post('/transaction/{transaction:uuid_transaction}/cancel', [AdminController::class, 'cancelStatus']);
 Route::post('/transaction/{transaction:uuid_transaction}/onTheWay', [AdminController::class, 'onTheWayStatus']);
+
+Route::get('/user/profile', [ProfileController::class, 'index']);
 
 
 Route::get('/admin', [AdminController::class, 'adminView']);
