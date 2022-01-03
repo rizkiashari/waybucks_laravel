@@ -18,22 +18,22 @@ class CartController extends Controller
             $qty = 0;
             $total = 0;
             $totalTop = 0;
-            foreach ($cart as $key => $value) {
-                $qty += $value['qty_transaction'];
-                $orderTop = 0;
-                // $temp = 0;
+            // foreach ($cart as $key => $value) {
+            //     $qty += $value['qty_transaction'];
+            //     $orderTop = 0;
+            //     // $temp = 0;
 
-                foreach ($value['toppings'] as $value2) {
-                    $totalTop += $value2['price_topping'];
+            //     foreach ($value['toppings'] as $value2) {
+            //         $totalTop += $value2['price_topping'];
 
-                    if ($value['id_product'] == $value2['id_product']) {
-                        $orderTop += $value2['price_topping'];
-                    }
-                }
-                // $temp = $orderTop + $value['price_product'];
-                $total += $value['price_product'];
-            }
-            $total += $totalTop;
+            //         if ($value['id_product'] == $value2['id_product']) {
+            //             $orderTop += $value2['price_topping'];
+            //         }
+            //     }
+            //     // $temp = $orderTop + $value['price_product'];
+            //     $total += $value['price_product'];
+            // }
+            // $total += $totalTop;
 
 
             return view('cart', [

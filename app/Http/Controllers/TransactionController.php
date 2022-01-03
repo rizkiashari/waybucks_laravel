@@ -22,7 +22,7 @@ class TransactionController extends Controller
             $cart = Cookie::get('cart');
             $cart = json_decode($cart, true);
 
-            // dd($request->all());
+            dd(($cart));
 
             $request->validate([
                 'name_transaction' => 'required',
@@ -68,22 +68,29 @@ class TransactionController extends Controller
 
             $transaction->save();
             $transactionDetail = new TransactionDetail();
-            foreach ($cart as $key => $value) {
-                $qty += $value['qty_transaction'];
+
+            // foreach ($cart as $key => $value) {
+            //     // dd($cart[$key]['id_product'], isset($cart[$key + 1]['id_product']) != isset($cart[$key]['id_product']), $cart[$key + 1]['id_product']);
+            //     if ($cart[$key + 1]['id_product'] == $cart[$key]['id_product']) {
+            //         $qty += $value['qty_transaction'];
+            //     } else {
+            //         $qty = $value['qty_transaction'];
+            //     }
 
 
-                $transactionDetail->transaction_id = $transaction->id;
-                $transactionDetail->product_id = $value['id_product'];
-                $transactionDetail->qty_transaction_detail = $qty;
+            //     $transactionDetail->transaction_id = $transaction->id;
+            //     $transactionDetail->product_id = $value['id_product'];
+            //     $transactionDetail->qty_transaction_detail = $qty;
 
-                foreach ($value['toppings'] as $value2) {
-                    $totalTop += $value2['price_topping'];
-                }
-                $total += $value['price_product'];;
-            }
-            $total += $totalTop;
-            $transactionDetail->subTotal = $total;
-            $transactionDetail->save();
+            //     foreach ($value['toppings'] as $value2) {
+            //         $totalTop += $value2['price_topping'];
+            //     }
+            //     $total += $value['price_product'];;
+            //     // $total += $totalTop;
+            //     $transactionDetail->subTotal = $total;
+            //     $transactionDetail->save();
+            // }
+
 
             foreach ($cart as $key => $value2) {
                 foreach ($value2['toppings'] as $value3) {
@@ -97,7 +104,7 @@ class TransactionController extends Controller
             Cookie::queue(Cookie::forget('cart'));
 
             // return redirect('/transaction/' . $transaction->uuid_transaction);
-            return redirect('/')->with('success', 'Pesanan anda berhasil dikirim, silahkan tunggu konfirmasi dari admin');
+            return redirect('/')->with('success', 'Pesanan anda berhasil dikirim, kami akan segera mengirimkan pesanan anda');
         } else {
             return redirect('/login')->with('error', 'Please login or Register');
         }
