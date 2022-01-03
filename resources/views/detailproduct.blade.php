@@ -57,7 +57,7 @@
               <div class="flex items-center gap-y-3 flex-col">
                 <label for="{{ $topping->id }}" class="relative cursor-pointer">
                   <img class="md:w-24 md:h-24 w-16 h-16 object-cover rounded-full" src="<?php echo asset("storage/images/$topping->photo_topping") ?>"/>
-                  <input type="checkbox" value={{ $topping->price_topping }}  name="topping[{{ $topping->id }}]" id="{{ $topping->id }}" class="absolute top-1 right-0 w-6 h-6 rounded-full appearance-none hidden checked:flex checked:bg-[#d35252] toppings" />
+                  <input type="checkbox" value={{ $topping->price_topping }}  name="toppings[{{ $topping->id }}]" id="{{ $topping->id }}" class="absolute top-1 right-0 w-6 h-6 rounded-full appearance-none hidden checked:flex checked:bg-[#d35252] toppings" />
                 </label>
                 <label class="text-[#BD0707] text-[12px] md:text-[14px]">{{ $topping->name_topping }}</label>
               </div>

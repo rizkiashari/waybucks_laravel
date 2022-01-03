@@ -13,27 +13,25 @@ class CartController extends Controller
     {
         $cart = Cookie::get('cart');
         if ($cart) {
-            // dd($cart);
             $cart = json_decode($cart, 60);
+            // dd($cart);
             $qty = 0;
             $total = 0;
             $totalTop = 0;
             // foreach ($cart as $key => $value) {
             //     $qty += $value['qty_transaction'];
             //     $orderTop = 0;
-            //     // $temp = 0;
 
-            //     foreach ($value['toppings'] as $value2) {
-            //         $totalTop += $value2['price_topping'];
-
-            //         if ($value['id_product'] == $value2['id_product']) {
-            //             $orderTop += $value2['price_topping'];
-            //         }
+            //     foreach ($value['toppings'] as $key2 => $value2) {
+            //         $orderTop += $value2['price_topping'];
             //     }
-            //     // $temp = $orderTop + $value['price_product'];
-            //     $total += $value['price_product'];
+
+            //     $total += $value['price_product'] + $orderTop;
             // }
-            // $total += $totalTop;
+            // dd($orderTop);
+
+            $total += $totalTop;
+            // dd($qty . ' ' . $total . ' ' . $totalTop);
 
 
             return view('cart', [
@@ -41,7 +39,6 @@ class CartController extends Controller
                 'active' => Auth::user(),
                 'carts' => $cart,
                 'total' => $total,
-                // 'orderTotal' => $temp,
                 'qty_transaction' => $qty,
             ]);
         } else {

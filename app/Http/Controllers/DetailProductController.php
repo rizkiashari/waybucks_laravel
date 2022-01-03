@@ -29,16 +29,18 @@ class DetailProductController extends Controller
 
         // add to cart cookies
         $cart = Cookie::get('cart');
-        if ($request->topping) {
-            $topping = $request->topping;
+        if ($request->get('toppings')) {
+            $topping = $request->get('toppings');
             $dataTopping = [];
+            $totalTopping = 0;
             foreach ($topping as $key => $value) {
                 $dataTopping[] = [
                     'id_topping' => $key,
-                    'price_topping' => $value,
                     'name_topping' => Topping::where('id', $key)->first()->name_topping,
                 ];
+                $totalTopping += Topping::where('id', $key)->first()->price_topping;
             }
+
             if (Auth::check()) {
                 if (!$cart) {
                     $cart = json_decode($cart, 60);
@@ -47,7 +49,7 @@ class DetailProductController extends Controller
                         'id_product' => $product->id,
                         'name_product' => $product->name_product,
                         'photo_product' => $product->photo_product,
-                        'price_product' => $product->price_product,
+                        'price_product' => $product->price_product + $totalTopping,
                         'toppings' => $dataTopping,
                         'qty_transaction' => 1,
                     ];
@@ -55,8 +57,8 @@ class DetailProductController extends Controller
                     Cookie::queue('cart', json_encode($cart), 60);
                     return back()->with('success', 'Product added to cart');
                 } else {
-
                     $cart = json_decode($cart, 60);
+                    dd($cart);
                     $checkId = array_filter($cart, function ($value) use ($product) {
                         return $value['id_product'] == $product->id;
                     });
@@ -66,22 +68,11 @@ class DetailProductController extends Controller
                         foreach ($checkId as $key => $value) {
                             $cart[$key]['qty_transaction'] += 1;
 
+                            // Update Price Product
+                            $cart[$key]['price_product'] += $product->price_product + $totalTopping;
+
+
                             $cart[$key]['toppings'] = array_merge($cart[$key]['toppings'], $dataTopping);
-
-                            // $checkIdTopping = array_filter(
-                            //     $cart[$key]['toppings'],
-                            //     function ($value) use ($dataTopping) {
-                            //         return $value['id_topping'] == $dataTopping[0]['id_topping'];
-                            //     }
-                            // );
-
-                            // if (count($checkIdTopping) > 0) {
-                            //     foreach ($checkIdTopping as $key2 => $value2) {
-                            //         $cart[$key]['toppings'][$key2]['price_topping'] += $dataTopping[$key2]['price_topping'];
-                            //     }
-                            // } else {
-                            //     $cart[$key]['toppings'] = array_merge($cart[$key]['toppings'], $dataTopping);
-                            // }
                         }
                     } else {
                         $cart[] = [
@@ -89,7 +80,7 @@ class DetailProductController extends Controller
                             'id_product' => $product->id,
                             'name_product' => $product->name_product,
                             'photo_product' => $product->photo_product,
-                            'price_product' => $product->price_product,
+                            'price_product' => $product->price_product + $totalTopping,
                             'toppings' => $dataTopping,
                             'qty_transaction' => 1,
                         ];
