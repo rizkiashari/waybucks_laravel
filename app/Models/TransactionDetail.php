@@ -25,6 +25,6 @@ class TransactionDetail extends Model
 
     public function transaction_topping()
     {
-        return $this->hasOne(TransactionTopping::class);
+        return $this->hasMany(TransactionTopping::class);
     }
 }

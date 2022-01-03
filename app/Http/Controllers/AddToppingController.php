@@ -21,7 +21,7 @@ class AddToppingController extends Controller
         $addTopping = new topping();
 
         $request->validate([
-            'name_topping' => 'required',
+            'name_topping' => 'required|unique:toppings',
             'price_topping' => 'required|numeric|min:1000',
         ]);
 

@@ -22,7 +22,7 @@ class TransactionController extends Controller
             $cart = Cookie::get('cart');
             $cart = json_decode($cart, true);
 
-            dd(($cart));
+            // dd($cart);
 
             $request->validate([
                 'name_transaction' => 'required',
@@ -62,44 +62,38 @@ class TransactionController extends Controller
 
             $transaction->address_transaction = $request->address_transaction;
             $transaction->status_transaction = 'Waiting Approve';
-            $qty = 0;
-            $total = 0;
-            $totalTop = 0;
 
             $transaction->save();
             $transactionDetail = new TransactionDetail();
 
-            // foreach ($cart as $key => $value) {
-            //     // dd($cart[$key]['id_product'], isset($cart[$key + 1]['id_product']) != isset($cart[$key]['id_product']), $cart[$key + 1]['id_product']);
-            //     if ($cart[$key + 1]['id_product'] == $cart[$key]['id_product']) {
-            //         $qty += $value['qty_transaction'];
-            //     } else {
-            //         $qty = $value['qty_transaction'];
-            //     }
+            $dataOrder = [];
 
+            // insert all cart to transaction_detail table
+            foreach ($cart as $key => $cartValue) {
+                $dataOrder[] = [
+                    'transaction_id' => $transaction->id,
+                    'product_id' => $cartValue['id_product'],
+                    'qty_transaction_detail' => $cartValue['qty_transaction'],
+                    'subTotal' => $cartValue['price_product'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
 
-            //     $transactionDetail->transaction_id = $transaction->id;
-            //     $transactionDetail->product_id = $value['id_product'];
-            //     $transactionDetail->qty_transaction_detail = $qty;
+            $transactionDetail->insert($dataOrder);
 
-            //     foreach ($value['toppings'] as $value2) {
-            //         $totalTop += $value2['price_topping'];
-            //     }
-            //     $total += $value['price_product'];;
-            //     // $total += $totalTop;
-            //     $transactionDetail->subTotal = $total;
-            //     $transactionDetail->save();
-            // }
-
-
-            foreach ($cart as $key => $value2) {
-                foreach ($value2['toppings'] as $value3) {
+            // insert topping to transaction_topping table
+            foreach ($cart as $key => $cartValue) {
+                foreach ($cartValue['toppings'] as $key2 => $value2) {
                     $transactionTopping = new TransactionTopping();
-                    $transactionTopping->transaction_detail_id = $transactionDetail->id;
-                    $transactionTopping->topping_id = $value3['id_topping'];
+                    $transactionTopping->transaction_detail_id = $transaction->id;
+                    $transactionTopping->topping_id = $value2['id_topping'];
                     $transactionTopping->save();
                 }
             }
+
+
+
 
             Cookie::queue(Cookie::forget('cart'));
 
