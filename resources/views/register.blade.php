@@ -28,14 +28,22 @@
             </div>
         </div>
     @endif
-    <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-        <p class="capitalize md:text-[32px] text-[14px] font-semibold text-[#BD0707]">Register</p>
-        <form class="mb-4" action="/register" method="POST" enctype="multipart/form-data">
+    <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:justify-between md:px-6 lg:px-8">
+        <p class="capitalize md:text-[32px] text-[14px] mb-8 font-semibold text-[#BD0707]">Register</p>
+        <form class="mb-4" action="/register" method="POST" class="flex flex-col" enctype="multipart/form-data">
             @csrf
-            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="email" name="email" placeholder="Email">
-            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="password" name="password" placeholder="Password">
-            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="text" name="fullname" placeholder="Full Name">
-            <input class="px-6 md:px-[26px] py-[5px] text-sm bg-[#BD0707] w-[110px] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Register">
+            <div class="w-full mb-4">
+                <input class="border-[2px] w-full border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="email" name="email" placeholder="Email">
+            </div>
+            <div class="w-full mb-4">
+                <input class="border-[2px] w-full border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="w-full mb-4">
+                <input class="border-[2px] w-full border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="text" name="fullname" placeholder="Full Name">
+            </div>
+            <div class="w-full mb-4">
+                <input class="px-6 md:px-[26px] w-full py-[5px] text-sm bg-[#BD0707] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Register">
+            </div>
         </form>
         <a href="/login">Already have an account?</a>
     </div>

@@ -40,17 +40,23 @@
             </div>
         </div>
     @endif
-    <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-        <p class="capitalize md:text-[32px] text-[14px] font-semibold text-[#BD0707]">Login</p>
-    <form class="mb-4" action="/login" method="POST" enctype="multipart/form-data">
-    @csrf
-            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="email" name="email" placeholder="Email">
-            <input class="border-[2px] border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="password" name="password" placeholder="Password">
-            <input class="px-6 md:px-[26px] py-[5px] text-sm bg-[#BD0707] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Login">
-        @error('auth')
-        <label class="block text-red">{{ $message }}</label>
-        @enderror
-    </form>
-    <a href="/register">Don't have an account?</a>
-</div>
+    <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:justify-between md:px-6 lg:px-8">
+        <p class="capitalize md:text-[32px] text-[14px] font-semibold mb-8 text-[#BD0707]">Login</p>
+        <form class="mb-4" action="/login" method="POST" enctype="multipart/form-data">
+        @csrf
+            <div class="w-full mb-4">
+                <input class="border-[2px] border-[#BD0707] w-full hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="email" name="email" placeholder="Email">
+            </div>
+            <div class="w-full mb-4">
+                <input class="border-[2px] border-[#BD0707] w-full hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="w-full mb-4">
+                <input class="px-6 md:px-[26px] py-[5px] w-full text-sm bg-[#BD0707] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Login">
+            </div>
+            @error('auth')
+                <label class="block text-red">{{ $message }}</label>
+            @enderror
+        </form>
+        <a href="/register">Don't have an account?</a>
+    </div>
 @endsection
