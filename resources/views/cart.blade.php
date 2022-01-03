@@ -41,7 +41,7 @@
   </div>
   @endif
     <div class="flex flex-col max-w-screen-xl md:mb-10 sm:mb-8 mb-6 px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-        @if (count($carts) > 0)   
+        @if (count($carts) > 0)  
             <div class="flex gap-8 md:flex-row flex-col w-full">
                 <div class="md:w-3/5 w-full">
                     <h2 class="text-[#BD0707] md:mb-8 mb-4 font-bold md:text-3xl text-xl sm:text-lg">My Cart</h2>
@@ -71,14 +71,10 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-[#BD0707]">
-                                                        {{-- cek topping id product --}}
-                                                        @foreach ($cart['toppings'] as $key => $topping)
-                                                            {{ $topping['name_topping'] }}
-                                                            @if ($key != count($cart['toppings']) - 1)
-                                                                ,
-                                                            @endif
+                                                        @foreach ($cart['topping'] as $item)
+                                                            {{ $item }}
                                                         @endforeach
-                                                        
+                                                
                                                     </p>
                                                 </div>
                                             </div>
@@ -87,9 +83,9 @@
                                     </div>
                                     <div class="flex flex-col justify-center gap-y-4 items-end">
                                         <div>
-                                            {{-- <p class="text-[#BD0707]">
-                                                {{ $orderTotal  }}
-                                            </p> --}}
+                                            <p class="text-[#BD0707]">
+                                                Rp.{{ number_format($cart['price_product'], 0, ',', '.') }}
+                                            </p>
                                         </div>
                                         <div x-data="{ show: false }">
                                             <a @click="show = true" class="flex cursor-pointer items-center gap-4">
@@ -138,7 +134,7 @@
                                                 <p>Subtotal</p>
                                             </div>
                                             <div>
-                                                <p>Rp.{{ number_format($total, 0, ',', '.') }}</p>
+                                                <p>Rp.{{ number_format($subTotal, 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                         <div class="flex justify-between">
@@ -157,7 +153,7 @@
                                             <p>Total</p>
                                         </div>
                                         <div>
-                                            <p>Rp.{{ number_format($total, 0, ',', '.') }}</p>
+                                            <p>Rp.{{ number_format($subTotal, 0, ',', '.') }}</p>
                                         </div>
                                     </div> 
                                 </div>

@@ -58,7 +58,7 @@ class DetailProductController extends Controller
                     return back()->with('success', 'Product added to cart');
                 } else {
                     $cart = json_decode($cart, 60);
-                    dd($cart);
+                    // dd($cart);
                     $checkId = array_filter($cart, function ($value) use ($product) {
                         return $value['id_product'] == $product->id;
                     });

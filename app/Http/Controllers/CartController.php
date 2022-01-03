@@ -17,28 +17,24 @@ class CartController extends Controller
             // dd($cart);
             $qty = 0;
             $total = 0;
-            $totalTop = 0;
-            // foreach ($cart as $key => $value) {
-            //     $qty += $value['qty_transaction'];
-            //     $orderTop = 0;
+            $subTotal = 0;
 
-            //     foreach ($value['toppings'] as $key2 => $value2) {
-            //         $orderTop += $value2['price_topping'];
-            //     }
+            foreach ($cart as $key => $value) {
+                $qty += $value['qty_transaction'];
+                $total += $value['price_product'];
+            }
+            $subTotal += $total;
 
-            //     $total += $value['price_product'] + $orderTop;
-            // }
-            // dd($orderTop);
-
-            $total += $totalTop;
-            // dd($qty . ' ' . $total . ' ' . $totalTop);
-
+            // remove duplicate topping by topping_id
+            foreach ($cart as $key => $value) {
+                $cart[$key]['topping'] = array_unique(array_column($value['toppings'], 'name_topping'));
+            }
 
             return view('cart', [
                 'title' => 'Cart',
                 'active' => Auth::user(),
                 'carts' => $cart,
-                'total' => $total,
+                'subTotal' => $subTotal,
                 'qty_transaction' => $qty,
             ]);
         } else {
