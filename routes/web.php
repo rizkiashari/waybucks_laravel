@@ -40,6 +40,7 @@ Route::post('/transaction/{transaction:uuid_transaction}/cancel', [AdminControll
 Route::post('/transaction/{transaction:uuid_transaction}/onTheWay', [AdminController::class, 'onTheWayStatus']);
 
 Route::get('/user/profile', [ProfileController::class, 'index']);
+Route::post('/user/update/{user:id}', [ProfileController::class, 'photoProfile']);
 
 
 Route::get('/admin', [AdminController::class, 'adminView']);

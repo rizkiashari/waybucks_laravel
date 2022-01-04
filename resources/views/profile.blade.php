@@ -47,29 +47,33 @@
         <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px] capitalize text-[#BD0707] md:mb-8 sm:mb-6 mb-4">My Profile</h3>
         <div class="flex gap-8">
           <div>
-            @if ($user->photo == null)
-              <div x-data='imagePreview()' class="inline-block h-[100px] w-[100px] md:h-[150px] md:w-[150px] rounded-full ring-2 ring-zinc-500">
-                <template x-if="!imageUrl">
-                  <label for="photo" class="cursor-pointer w-full h-full text-[#111827] uppercase ml-[0.5em] font-medium font-Oswald text-[4em] md:text-[6em]" >{{ substr($user->fullname , 0, 1) }}</label>
-                </template>
-                <template x-if="imageUrl">
-                  <img :src="imageUrl" class="inline-block h-[100px]  w-[100px] object-cover md:h-[150px] md:w-[150px] rounded-full ring-2 ring-white" />
-                </template>          
-                <input type="file" @change="fileChosen" class="hidden" name="photo" id="photo" />
-              </div>
-            @else
-              <div x-data='imagePreview()'>
-                <label for="photo" class="cursor-pointer">
+            <form class="flex flex-col" method="POST" action="/user/update/{{ $user->id }}" enctype="multipart/form-data">
+              @csrf
+              @if ($user->profile == null)
+                <div x-data='imagePreview()' class="inline-block h-[100px] w-[100px] md:h-[150px] md:w-[150px] rounded-full ring-2 ring-zinc-500">
                   <template x-if="!imageUrl">
-                    <img class="inline-block h-[100px] w-[100px] md:h-[150px] md:w-[150px] object-cover rounded-full ring-2 ring-white" src="<?php echo asset("storage/profile/$user->photo") ?>" alt="">
+                    <label for="photo" class="cursor-pointer w-full h-full text-[#111827] uppercase ml-[0.5em] font-medium font-Oswald text-[4em] md:text-[6em]" >{{ substr($user->fullname , 0, 1) }}</label>
                   </template>
                   <template x-if="imageUrl">
-                    <img :src="imageUrl" class="inline-block h-[100px] w-[100px] object-cover md:h-[150px] md:w-[150px] rounded-full ring-2 ring-white" />
-                  </template> 
-                </label>
-                <input type="file"  @change="fileChosen" class="hidden" name="photo" id="photo" />                                  
-              </div>     
-            @endif
+                    <img :src="imageUrl" class="inline-block h-[100px]  w-[100px] object-cover md:h-[150px] md:w-[150px] rounded-full ring-2 ring-white" />
+                  </template>          
+                  <input type="file" @change="fileChosen" class="hidden" name="profile" id="photo" />
+                </div>
+              @else
+                <div x-data='imagePreview()'>
+                  <label for="photo" class="cursor-pointer">
+                    <template x-if="!imageUrl">
+                      <img class="inline-block h-[100px] w-[100px] md:h-[150px] md:w-[150px] object-cover rounded-full ring-2 ring-white" src="<?php echo asset("storage/profile/$user->profile") ?>" alt="">
+                    </template>
+                    <template x-if="imageUrl">
+                      <img :src="imageUrl" class="inline-block h-[100px] w-[100px] object-cover md:h-[150px] md:w-[150px] rounded-full ring-2 ring-white" />
+                    </template> 
+                  </label>
+                  <input type="file"  @change="fileChosen" class="hidden" name="profile" id="photo" />                                  
+                </div>     
+              @endif
+              <button type="submit" class="bg-[#bd0707] text-[#fff] px-2 py-1 rounded-md text-[14px] mt-4 ml-4">Update Profile</button>
+            </form>
           </div>
           <div>
             <div class="mb-4">
@@ -85,9 +89,33 @@
       </div>
       <div>
         <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px] capitalize text-[#613D2B] md:mb-8 sm:mb-6 mb-4">My Transaction</h3>
-        <div class="bg-[#F6DADA] rounded px-4 py-2">
-          
-        </div>
+        @foreach ($transactions as $transaction)
+          <div class="bg-[#F6DADA] flex gap-7 flex-col mb-4 justify-between w-full px-4 py-2">
+            <div class="flex flex-col gap-4">
+              @foreach ($detailTransactions as $detailTransaction)
+                @if ($detailTransaction->transaction_id == $transaction->id)
+                  <div class="flex gap-4">
+                    <img class="w-[60px] object-cover " src="<?php echo asset("storage/images/$detailTransaction->PhotoProduct") ?>"/>
+                    <div>
+                      <h3 class="text-sm text-[#BD0707] mb-1 font-semibold">{{ $detailTransaction->NameProduct }}</h3>
+                      <?php 
+                        $date = date_create($transaction->created_at);
+                        $dateDay = date_format($date, 'l,');
+                        $dateFull = date_format($date, 'd F Y');
+                      ?>
+                      <p class="text-[10px] text-[#BD0707] mb-2"><strong>{{ $dateDay }}</strong> {{ $dateFull }}</p>
+                      <div class="flex gap-x-3 items-center">
+                        <p class="text-[#974A4A] text-[10px]">Price:</p>
+                        <p class="text-[#974A4A] text-[10px]">{{ $detailTransaction->subTotal }}</p>
+                      </div>
+                    </div>
+                  </div>
+                @endif             
+              @endforeach
+            </div>
+            <div></div>
+          </div>
+        @endforeach
       </div>
     </div>
   </div>
