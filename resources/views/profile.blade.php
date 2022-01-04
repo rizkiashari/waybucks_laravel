@@ -13,8 +13,8 @@
             @foreach ($errors->all() as $error)
             <li class="text-[10px] sm:text-[12px] md:text-[16px]">{{ $error }}</li>
             @endforeach
-          </ul> 
-        </div> 
+          </ul>
+        </div>
       </div>
     </div>
   @endif
@@ -24,7 +24,7 @@
             <span class="absolute left-0 top-0 px-4 py-3">
             <svg @click="open = !open" class="fill-current h-6 w-6 text-[#539b7b]" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
             </span>
-            <strong class="font-bold text-[10px] sm:text-[12px] md:text-[16px] md:w-[400px] w-[300px]">{{ session('success') }}</strong>     
+            <strong class="font-bold text-[10px] sm:text-[12px] md:text-[16px] md:w-[400px] w-[300px]">{{ session('success') }}</strong>
         </div>
     </div>
   @endif
@@ -36,9 +36,9 @@
         </span>
         <div class="flex flex-col ml-4">
           <strong class="font-bold text-[10px] sm:text-[12px] md:text-[16px] md:w-[400px] w-[300px]">{{ session('error') }}</strong>
-        </div> 
+        </div>
       </div>
-    </div> 
+    </div>
   @endif
 
   <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
@@ -56,7 +56,7 @@
                   </template>
                   <template x-if="imageUrl">
                     <img :src="imageUrl" class="inline-block h-[100px]  w-[100px] object-cover md:h-[150px] md:w-[150px] rounded-full ring-2 ring-white" />
-                  </template>          
+                  </template>
                   <input type="file" @change="fileChosen" class="hidden" name="profile" id="photo" />
                 </div>
               @else
@@ -67,10 +67,10 @@
                     </template>
                     <template x-if="imageUrl">
                       <img :src="imageUrl" class="inline-block h-[100px] w-[100px] object-cover md:h-[150px] md:w-[150px] rounded-full ring-2 ring-white" />
-                    </template> 
+                    </template>
                   </label>
-                  <input type="file"  @change="fileChosen" class="hidden" name="profile" id="photo" />                                  
-                </div>     
+                  <input type="file"  @change="fileChosen" class="hidden" name="profile" id="photo" />
+                </div>
               @endif
               <button type="submit" class="bg-[#bd0707] text-[#fff] px-2 py-1 rounded-md text-[14px] mt-4 ml-4">Update Profile</button>
             </form>
@@ -98,7 +98,7 @@
                     <img class="w-[100px] object-cover rounded-lg" src="<?php echo asset("storage/images/$detailTransaction->PhotoProduct") ?>"/>
                     <div>
                       <h3 class="text-sm text-[#BD0707] mb-1 font-semibold">{{ $detailTransaction->NameProduct }}</h3>
-                      <?php 
+                      <?php
                         $date = date_create($transaction->created_at);
                         $dateDay = date_format($date, 'l,');
                         $dateFull = date_format($date, 'd F Y');
@@ -108,7 +108,9 @@
                         <p class="text-[10px] text-[#BD0707]">Topping</p>
                         <p class="text-[#BD0707] text-[10px] font-semibold">
                           @foreach ($toppingTransaction as $item)
+                          @if ($item->transaction_detail_id == $detailTransaction->id)
                           {{ $item->NameTopping }}
+                          @endif
                           @endforeach
                         </p>
                       </div>
@@ -118,7 +120,7 @@
                       </div>
                     </div>
                   </div>
-                @endif             
+                @endif
               @endforeach
             </div>
             <div></div>
