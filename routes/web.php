@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ToppingController;
 use App\Http\Controllers\TransactionController;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +45,17 @@ Route::get('/user/profile', [ProfileController::class, 'index']);
 
 
 Route::get('/admin', [AdminController::class, 'adminView']);
-Route::get('/addtopping', [AddToppingController::class, 'index']);
-Route::post('/addtopping', [AddToppingController::class, 'insert']);
-Route::get('/addproduct', [AddProductController::class, 'index']);
-Route::post('/addproduct', [AddProductController::class, 'insert']);
+
+Route::get('/topping', [ToppingController::class, 'index']);
+Route::get('/addtopping', [ToppingController::class, 'create']);
+Route::post('/addtopping', [ToppingController::class, 'store']);
+Route::get('/updatetopping/{topping}', [ToppingController::class, 'edit']);
+Route::put('/updatetopping/{topping}', [ToppingController::class, 'update']);
+Route::delete('/deletetopping/{id}', [ToppingController::class, 'destroy']);
+
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/addproduct', [ProductController::class, 'create']);
+Route::post('/addproduct', [ProductController::class, 'store']);
+Route::get('/updateproduct/{product}', [ProductController::class, 'edit']);
+Route::put('/updateproduct/{product}', [ProductController::class, 'update']);
+Route::delete('/deleteproduct/{id}', [ProductController::class, 'destroy']);

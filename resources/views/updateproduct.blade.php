@@ -20,12 +20,13 @@
   <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
     <div class="flex gap-20 items-center md:flex-row flex-col">
       <div class="flex flex-col">
-        <h1 class="md:mb-16 mb-12 font-extrabold md:text-[36px] sm:text-[24px] text-[16px] text-[#BD0707]">Add Product</h1>
-        <form class="mb-4" enctype="multipart/form-data"action="{{url()->current()}}" method="POST">
+        <h1 class="md:mb-16 mb-12 font-extrabold md:text-[36px] sm:text-[24px] text-[16px] text-[#BD0707]">Update Product</h1>
+        <form class="mb-4" enctype="multipart/form-data"action="{{url('updateproduct/'.$product->id)}}" method="POST">
         @csrf
-          <input class="mb-4 md:px-4 md:py-2 py-2 px-2 text-[14px] md:text-[16px] rounded-md w-full placeholder:text-[#BD0707] bg-[#eec4c440] border-2 border-[#f58181]"  type="text" value="{{old('name_product')}}" name="name_product" placeholder="Name Product" />
-          <input class="mb-4 md:px-4 md:py-2 py-2 px-2 text-[14px] md:text-[16px] rounded-md w-full placeholder:text-[#BD0707] bg-[#eec4c440] border-2 border-[#f58181]" type="number" value="{{old('price_product')}}" name="price_product" placeholder="Price" />
-          <input class="mb-4 md:px-4 md:py-2 py-2 px-2 text-[14px] md:text-[16px] rounded-md w-full placeholder:text-[#BD0707] bg-[#eec4c440] border-2 border-[#f58181]" type="number" value="{{old('qty_product')}}" name="qty_product" placeholder="Quantity" />
+        @method('PUT')
+          <input class="mb-4 md:px-4 md:py-2 py-2 px-2 text-[14px] md:text-[16px] rounded-md w-full placeholder:text-[#BD0707] bg-[#eec4c440] border-2 border-[#f58181]"  type="text" value="{{old('name_product',$product->name_product)}}" name="name_product" placeholder="Name Product" />
+          <input class="mb-4 md:px-4 md:py-2 py-2 px-2 text-[14px] md:text-[16px] rounded-md w-full placeholder:text-[#BD0707] bg-[#eec4c440] border-2 border-[#f58181]" type="number" value="{{old('price_product',$product->price_product)}}" name="price_product" placeholder="Price" />
+          <input class="mb-4 md:px-4 md:py-2 py-2 px-2 text-[14px] md:text-[16px] rounded-md w-full placeholder:text-[#BD0707] bg-[#eec4c440] border-2 border-[#f58181]" type="number" value="{{old('qty_product',$product->qty_product)}}" name="qty_product" placeholder="Quantity" />
 
           <div class="flex mb-4 px-4 py-2 relative rounded-md w-full bg-[#eec4c440] border-2 border-[#f58181]">
             <label for="filename" class="filename text-[#BD0707]">Photo Product</label>
@@ -38,7 +39,7 @@
               <input type="file" name="file" id="fileupload" onchange="loadFile(event)" class="hidden">
             </div>
           </div>
-          <button class="bg-[#BD0707] hover:bg-[#dd2727] my-4 w-full text-white font-bold py-2 px-4 rounded">Add Product</button>
+          <button class="bg-[#BD0707] hover:bg-[#dd2727] my-4 w-full text-white font-bold py-2 px-4 rounded">Update Product</button>
         </form>
       </div>
       <div class="md:w-[25rem] w-full md:mb-0 mb-8 rounded-lg md:h-[400px] h-[50%]">
