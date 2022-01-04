@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\TransactionTopping;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -22,12 +24,19 @@ class ProfileController extends Controller
             ->select('transaction_details.*', 'products.name_product as NameProduct', 'products.photo_product as PhotoProduct')
             ->get();
 
+        $toppingTransaction = DB::table('transaction_toppings')
+            ->join('transactions', 'transactions.id', '=', 'transaction_toppings.transaction_detail_id')
+            ->join('toppings', 'toppings.id', '=', 'transaction_toppings.topping_id')
+            ->select('transaction_toppings.*', 'toppings.name_topping as NameTopping')
+            ->get();
+
         return view('profile', [
             'title' => 'Profile',
             'user' => auth()->user(),
             'title' => 'Profile' . auth()->user()->name,
             'transactions' => $transactions,
-            'detailTransactions' => $detailTransaction
+            'detailTransactions' => $detailTransaction,
+            'toppingTransaction' => $toppingTransaction
         ]);
     }
 

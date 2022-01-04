@@ -104,6 +104,13 @@
                         $dateFull = date_format($date, 'd F Y');
                       ?>
                       <p class="text-[10px] text-[#BD0707] mb-2"><strong>{{ $dateDay }}</strong> {{ $dateFull }}</p>
+                      <p class="text-[10px] text-[#BD0707] mb-2"><strong>Topping</strong>
+                        <p class="text-[#BD0707]">
+                          @foreach ($toppingTransaction as $item)
+                              {{ $item->NameTopping }}
+                          @endforeach
+                      </p>
+                      </p>
                       <div class="flex gap-x-3 items-center">
                         <p class="text-[#974A4A] text-[10px]">Price:</p>
                         <p class="text-[#974A4A] text-[10px]">{{ $detailTransaction->subTotal }}</p>
