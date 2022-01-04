@@ -38,14 +38,14 @@
                 @if (Auth::user()->role_id == 1)
                   <div class="flex gap-x-4 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                     <img class="w-6 h-8" src="/icons/icon_add_product.png"/>
-                    <a class="text-[16px]" href="/addproduct">
-                      Add Product
+                    <a class="text-[16px]" href="/product">
+                      Product
                     </a>
                   </div>
                   <div class="flex gap-x-4 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                     <img class="w-7 h-8" src="/icons/icon_add_topping.png" />
-                    <a class="text-[16px]" href="/addtopping">
-                      Add Topping
+                    <a class="text-[16px]" href="/topping">
+                      Topping
                     </a>
                   </div>
                 @else
