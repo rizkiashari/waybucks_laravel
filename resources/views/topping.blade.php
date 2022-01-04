@@ -16,25 +16,20 @@
         <h1 class="md:mb-16 mb-12 font-extrabold md:text-[36px] sm:text-[24px] text-[16px] text-[#BD0707]">Topping</h1>
             <div class="flex md:gap-9 sm:gap-6 gap-4 mb-4 md:mb-8 flex-wrap">
                 @foreach ($toppings as $topping)
-                <form class="mb-5" 
-                        action="{{url('deletetopping/'.$topping->id)}}" 
-                        method="POST">
+                  <form class="mb-5" action="{{url('deletetopping/'.$topping->id)}}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <div class="flex w-full gap-4 md:gap-8 flex-wrap">
-                        <div class="flex items-center gap-y-3 flex-col">
-                          <label for="{{ $topping->id }}" class="relative cursor-pointer">
-                            <img class="md:w-24 md:h-24 w-16 h-16 object-cover rounded-full" src="<?php echo asset("storage/images/$topping->photo_topping") ?>"/>
-                            <input type="checkbox" value={{ $topping->price_topping }}  name="toppings[{{ $topping->id }}]" id="{{ $topping->id }}" class="absolute top-1 right-0 w-6 h-6 rounded-full appearance-none hidden checked:flex checked:bg-[#d35252] toppings" />
-                          </label>
-                          <label class="text-[#BD0707] text-[12px] md:text-[14px]">{{ $topping->name_topping }}</label>
+                    <div class="flex w-full gap-4 justify-center md:gap-8 flex-wrap">
+                        <div class="flex items-center justify-center gap-y-4 flex-col">
+                          <img class="md:w-24 md:h-24 w-16 h-16 object-cover rounded-full" src="<?php echo asset("storage/images/$topping->photo_topping") ?>"/>
+                          <p class="text-[#BD0707] my-2 text-[12px] md:text-[14px]">{{ $topping->name_topping }}</p>
                         </div>
-                      </div>
-                      <div class="inline-flex">
-                        <button type="submit"class="bg-blue-300 hover:bg-gray-400 text-gray-500 font-bold py-2 rounded-l">Delete</button>
-                        <a href="{{url('updatetopping/'.$topping->id)}}" class="bg-grey-300 hover:bg-gray-400 text-gray-500 font-bold py-2 px-4 rounded-r">Update</a>
-                      </div>
-                    </form>
+                    </div>
+                    <div class="inline-flex w-full">
+                      <button type="submit" class="w-[50%] bg-[#fff] border-[#974A4A] rounded-bl-lg border-[1px] text-[14px] text-[#111545] font-medium py-2 px-3">Delete</button>
+                      <a href="{{url('updatetopping/'.$topping->id)}}" class="w-[50%] rounded-br-lg bg-[#974A4A] text-center text-[14px] text-[#fff] font-medium py-2 px-3">Update</a>
+                    </div>
+                  </form>
                 @endforeach
             </div>
             
@@ -42,6 +37,13 @@
             <p class="capitalize md:text-[32px] text-[14px] font-semibold">Topping Not found</p>
         @endif
     </div>
-        <a href="{{url('addtopping')}}" style="transition:.3s; -webkit-tap-highlight-color: rgba(0,0,0,0);position: fixed; bottom: 16px;right: 16px;" class="overflow-scroll"><svg class="h-16 w-16 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="9" y1="12" x2="15" y2="12" />  <line x1="12" y1="9" x2="12" y2="15" /></svg></a>
-</div>
+    <a href="{{url('addtopping')}}" style="-webkit-tap-highlight-color: rgba(0,0,0,0);" class="transition-[0.3s] fixed bottom-8 md:right-32 sm:right-8 right-4">
+      <svg class="h-14 w-14 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <circle cx="12" cy="12" r="9" />  
+        <line x1="9" y1="12" x2="15" y2="12" />  
+        <line x1="12" y1="9" x2="12" y2="15" />
+      </svg>
+    </a>
+  </div>
 @endsection
