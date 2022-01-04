@@ -74,26 +74,32 @@ class TransactionController extends Controller
             $transaction->total_transaction = $subTotal;
 
             $transaction->save();
-            $transactionDetail = new TransactionDetail();
+            // $transactionDetail = new TransactionDetail();
 
-            $dataOrder = [];
+            // $dataOrder = [];
 
             // insert all cart to transaction_detail table
-            foreach ($cart as $key => $cartValue) {
-                $dataOrder[] = [
-                    'transaction_id' => $transaction->id,
-                    'product_id' => $cartValue['id_product'],
-                    'qty_transaction_detail' => $cartValue['qty_transaction'],
-                    'subTotal' => $cartValue['price_product'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
+            // foreach ($cart as $key => $cartValue) {
+            //     $dataOrder[] = [
+            //         'transaction_id' => $transaction->id,
+            //         'product_id' => $cartValue['id_product'],
+            //         'qty_transaction_detail' => $cartValue['qty_transaction'],
+            //         'subTotal' => $cartValue['price_product'],
+            //         'created_at' => now(),
+            //         'updated_at' => now(),
+            //     ];
+            // }
 
-            $transactionDetail->insert($dataOrder);
+            // $transactionDetail->insert($dataOrder);
 
             // insert topping to transaction_topping table
             foreach ($cart as $key => $cartValue) {
+                $transactionDetail = new TransactionDetail();
+                $transactionDetail->transaction_id = $transaction->id;
+                $transactionDetail->product_id = $cartValue['id_product'];
+                $transactionDetail->qty_transaction_detail = $cartValue['qty_transaction'];
+                $transactionDetail->subTotal = $cartValue['price_product'];
+                $transactionDetail->save();
                 foreach ($cartValue['toppings'] as $key2 => $value2) {
                     $transactionTopping = new TransactionTopping();
                     $transactionTopping->transaction_detail_id = $transaction->id;

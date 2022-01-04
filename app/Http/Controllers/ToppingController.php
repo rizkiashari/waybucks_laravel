@@ -49,6 +49,7 @@ class ToppingController extends Controller
         $request->validate([
             'name_topping' => 'required|unique:toppings',
             'price_topping' => 'required|numeric|min:1000',
+            'file' => 'required|image|mimes:jpg,png,jpeg',
         ]);
 
         $photo_name = $request->file('file')->getClientOriginalName();

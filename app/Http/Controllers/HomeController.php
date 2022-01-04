@@ -66,6 +66,7 @@ class HomeController extends Controller
         $user->fullname = $request->fullname;
         $user->password = Hash::make($request->password);
         $user->role_id = Role::where('name_role', 'customer')->value('id');
+        $user->profile = '';
         $user->save();
         return redirect('/login');
     }
