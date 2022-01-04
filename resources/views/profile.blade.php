@@ -90,12 +90,12 @@
       <div>
         <h3 class="font-bold text-[16px] sm:text-[20px] md:text-[24px] capitalize text-[#613D2B] md:mb-8 sm:mb-6 mb-4">My Transaction</h3>
         @foreach ($transactions as $transaction)
-          <div class="bg-[#F6DADA] flex gap-7 flex-col mb-4 justify-between w-full px-4 py-2">
+          <div class="bg-[#F6DADA] flex flex-col mb-4 justify-between w-full px-4 py-3">
             <div class="flex flex-col gap-4">
               @foreach ($detailTransactions as $detailTransaction)
                 @if ($detailTransaction->transaction_id == $transaction->id)
                   <div class="flex gap-4">
-                    <img class="w-[60px] object-cover " src="<?php echo asset("storage/images/$detailTransaction->PhotoProduct") ?>"/>
+                    <img class="w-[100px] object-cover rounded-lg" src="<?php echo asset("storage/images/$detailTransaction->PhotoProduct") ?>"/>
                     <div>
                       <h3 class="text-sm text-[#BD0707] mb-1 font-semibold">{{ $detailTransaction->NameProduct }}</h3>
                       <?php 
@@ -104,13 +104,14 @@
                         $dateFull = date_format($date, 'd F Y');
                       ?>
                       <p class="text-[10px] text-[#BD0707] mb-2"><strong>{{ $dateDay }}</strong> {{ $dateFull }}</p>
-                      <p class="text-[10px] text-[#BD0707] mb-2"><strong>Topping</strong>
-                        <p class="text-[#BD0707]">
+                      <div class="flex items-center mb-2 gap-3">
+                        <p class="text-[10px] text-[#BD0707]">Topping</p>
+                        <p class="text-[#BD0707] text-[10px] font-semibold">
                           @foreach ($toppingTransaction as $item)
-                              {{ $item->NameTopping }}
+                          {{ $item->NameTopping }}
                           @endforeach
-                      </p>
-                      </p>
+                        </p>
+                      </div>
                       <div class="flex gap-x-3 items-center">
                         <p class="text-[#974A4A] text-[10px]">Price:</p>
                         <p class="text-[#974A4A] text-[10px]">{{ $detailTransaction->subTotal }}</p>
