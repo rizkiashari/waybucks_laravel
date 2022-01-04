@@ -102,7 +102,7 @@ class TransactionController extends Controller
                 $transactionDetail->save();
                 foreach ($cartValue['toppings'] as $key2 => $value2) {
                     $transactionTopping = new TransactionTopping();
-                    $transactionTopping->transaction_detail_id = $transaction->id;
+                    $transactionTopping->transaction_detail_id = $transactionDetail->id;
                     $transactionTopping->topping_id = $value2['id_topping'];
                     $transactionTopping->save();
                 }
