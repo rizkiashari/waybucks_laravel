@@ -108,17 +108,14 @@
                         <p class="text-[10px] text-[#BD0707]">Topping</p>
                         <p class="text-[#BD0707] text-[10px] font-semibold">
                           @foreach ($toppingTransaction as $item)
-<<<<<<< HEAD
                           <?php 
                             $uniqueStr = implode(',', array_unique(explode(',', $item->NameTopping)));
                           ?>
                             {{ $uniqueStr }}
                           {{-- {{ $item->NameTopping }} --}}
-=======
                           @if ($item->transaction_detail_id == $detailTransaction->id)
                           {{ $item->NameTopping }}
                           @endif
->>>>>>> 845bf94a6d5c7c541427fd5157c22a5e9b8f114c
                           @endforeach
                         </p>
                       </div>

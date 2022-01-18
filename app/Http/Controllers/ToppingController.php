@@ -127,6 +127,6 @@ class ToppingController extends Controller
         $deletetooping = Topping::find($id);
         $deletetooping->delete();
 
-        return back();
+        return back()->with('success', 'Topping has been deleted');
     }
 }

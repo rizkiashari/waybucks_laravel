@@ -139,6 +139,6 @@ class ProductController extends Controller
         $deleteproduct = Product::find($id);
         $deleteproduct->delete();
 
-        return back();
+        return back()->with('success', 'Product has been deleted');
     }
 }
