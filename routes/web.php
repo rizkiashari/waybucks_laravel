@@ -43,6 +43,8 @@ Route::post('/transaction/{transaction:uuid_transaction}/onTheWay', [AdminContro
 
 Route::get('/user/profile', [ProfileController::class, 'index']);
 Route::post('/user/update/{user:id}', [ProfileController::class, 'photoProfile']);
+Route::get('/user/change-password', [ProfileController::class, 'changePassword']);
+Route::post('/user/change-password', [ProfileController::class, 'updatePassword']);
 
 
 Route::get('/admin', [AdminController::class, 'adminView']);

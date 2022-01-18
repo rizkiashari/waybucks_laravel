@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -63,6 +64,34 @@ class ProfileController extends Controller
             }
         } else {
             return redirect()->back()->with('error', 'You are not authorized to access this page');
+        }
+    }
+
+    public function changePassword()
+    {
+        return view('changepassword', [
+            'title' => 'Change Password',
+            'user' => auth()->user(),
+            'title' => 'Profile' . auth()->user()->name,
+        ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        if (!Hash::check($request->current, auth()->user()->password)) {
+            return back()->with('error', 'Current password does not match!');
+        } else {
+            $request->validate([
+                'current' => 'required|alpha_num|min:6',
+                'password' => 'required|alpha_num|min:6',
+                'confirm' => 'nullable|min:6|same:password',
+            ]);
+
+            User::find(auth()->user()->id)->update([
+                'password' => bcrypt($request->password),
+            ]);
+
+            return redirect()->back()->with('success', 'Change Password updated successfully');
         }
     }
 }

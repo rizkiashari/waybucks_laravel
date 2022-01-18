@@ -56,6 +56,15 @@
                     </a>
                   </div>
                 @endif
+                <div class="flex gap-x-4 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#BD0707" class="bi bi-file-lock2" viewBox="0 0 16 16">
+                    <path d="M8 5a1 1 0 0 1 1 1v1H7V6a1 1 0 0 1 1-1zm2 2.076V6a2 2 0 1 0-4 0v1.076c-.54.166-1 .597-1 1.224v2.4c0 .816.781 1.3 1.5 1.3h3c.719 0 1.5-.484 1.5-1.3V8.3c0-.627-.46-1.058-1-1.224z"/>
+                    <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                  </svg>
+                  <a class="text-[16px]" href="/user/change-password">
+                    Change Password
+                  </a>
+                </div>
                 <div class="border-t-[1px] w-full my-2 border-t-[#c0c0c0]"></div>
                 <div class="flex gap-x-2 items-center px-4 py-2 mt-2 text-sm font-medium rounded-lg md:mt-0 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                   <img class="w-7 h-8" src="/icons/icon_logout.png" />

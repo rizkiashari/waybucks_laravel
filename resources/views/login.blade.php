@@ -51,12 +51,12 @@
                 <input class="border-[2px] border-[#BD0707] w-full hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="password" name="password" placeholder="Password">
             </div>
             <div class="w-full mb-4">
-                <input class="px-6 md:px-[26px] py-[5px] w-full text-sm bg-[#BD0707] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Login">
+                <input class="px-6 md:px-[26px] py-[5px] w-full text-sm bg-[#BD0707] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707] cursor-pointer" type="submit" value="Login">
             </div>
             @error('auth')
                 <label class="block text-red">{{ $message }}</label>
             @enderror
         </form>
-        <a href="/register">Don't have an account?</a>
+        <a class="cursor-pointer" href="/register">Don't have an account?</a>
     </div>
 @endsection

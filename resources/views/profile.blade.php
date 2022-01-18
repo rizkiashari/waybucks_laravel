@@ -40,7 +40,6 @@
       </div>
     </div> 
   @endif
-
   <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
     <div class="flex w-full flex-row md:gap-8 sm:gap-6 gap-4 justify-between flex-wrap">
       <div>
@@ -74,6 +73,7 @@
               @endif
               <button type="submit" class="bg-[#bd0707] text-[#fff] px-2 py-1 rounded-md text-[14px] mt-4 ml-4">Update Profile</button>
             </form>
+            
           </div>
           <div>
             <div class="mb-4">
@@ -108,7 +108,11 @@
                         <p class="text-[10px] text-[#BD0707]">Topping</p>
                         <p class="text-[#BD0707] text-[10px] font-semibold">
                           @foreach ($toppingTransaction as $item)
-                          {{ $item->NameTopping }}
+                          <?php 
+                            $uniqueStr = implode(',', array_unique(explode(',', $item->NameTopping)));
+                          ?>
+                            {{ $uniqueStr }}
+                          {{-- {{ $item->NameTopping }} --}}
                           @endforeach
                         </p>
                       </div>

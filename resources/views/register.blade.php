@@ -42,9 +42,9 @@
                 <input class="border-[2px] w-full border-[#BD0707] hover:border-[#a31b1b] py-1 text-[#BD0707] font-bold px-8 rounded-md text-sm" type="text" name="fullname" placeholder="Full Name">
             </div>
             <div class="w-full mb-4">
-                <input class="px-6 md:px-[26px] w-full py-[5px] text-sm bg-[#BD0707] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Register">
+                <input class="px-6 md:px-[26px] cursor-pointer w-full py-[5px] text-sm bg-[#BD0707] text-[#f2f2f2] font-bold rounded-md hover:bg-[#910707]" type="submit" value="Register">
             </div>
         </form>
-        <a href="/login">Already have an account?</a>
+        <a class="cursor-pointer" href="/login">Already have an account?</a>
     </div>
 @endsection
